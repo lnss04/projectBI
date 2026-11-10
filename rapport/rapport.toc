@@ -1,0 +1,16 @@
+\babel@toc {french}{}\relax 
+\contentsline {section}{\numberline {1}Contexte et architecture}{2}{section.1}%
+\contentsline {section}{\numberline {2}Les 5 étapes d'analyse}{2}{section.2}%
+\contentsline {section}{\numberline {3}Schéma de la BD OLAP (étoile)}{3}{section.3}%
+\contentsline {section}{\numberline {4}Schéma de la BD de staging (MySQL)}{3}{section.4}%
+\contentsline {section}{\numberline {5}Flux réalisé dans NiFi}{4}{section.5}%
+\contentsline {section}{\numberline {6}Configuration des processeurs}{6}{section.6}%
+\contentsline {section}{\numberline {7}Règles de transformation}{8}{section.7}%
+\contentsline {section}{\numberline {8}Visualisation Power BI}{8}{section.8}%
+\contentsline {paragraph}{Modèle.}{8}{section*.12}%
+\contentsline {paragraph}{Mesures DAX}{8}{section*.13}%
+\contentsline {section}{\numberline {9}Bonus : Change Data Capture, contrôles et limites}{9}{section.9}%
+\contentsline {paragraph}{Démonstration sur l'infrastructure de l'école.}{11}{section*.18}%
+\contentsline {paragraph}{Contrôles post-chargement}{12}{section*.22}%
+\contentsline {paragraph}{Limites.}{13}{section*.24}%
+\contentsline {section}{\numberline {A}Fichiers fournis}{13}{appendix.A}%

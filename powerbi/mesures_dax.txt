@@ -1,0 +1,41 @@
+// =====================================================================
+//  MESURES DAX - à créer dans Power BI Desktop
+//  Vue "Données" (ou "Rapport") > sélectionner la table fact_ventes
+//  > ruban "Outils de table" > "Nouvelle mesure" > coller UNE mesure à la fois
+//
+//  Règle métier : les commandes annulées (statut 'Cancelled' dans classicmodels)
+//  ne comptent pas dans le chiffre d'affaires.
+// =====================================================================
+
+CA =
+CALCULATE (
+    SUM ( fact_ventes[chiffre_affaires] ),
+    fact_ventes[statut_commande] <> "Cancelled"
+)
+
+Marge brute =
+CALCULATE (
+    SUM ( fact_ventes[marge_brute] ),
+    fact_ventes[statut_commande] <> "Cancelled"
+)
+
+Taux de marge =
+DIVIDE ( [Marge brute], [CA] )
+// -> Outils de mesure > Format : Pourcentage
+
+Quantité vendue =
+CALCULATE (
+    SUM ( fact_ventes[quantite] ),
+    fact_ventes[statut_commande] <> "Cancelled"
+)
+
+// --- Bonus (nécessite d'avoir marqué dim_date comme "table de dates") ---
+CA N-1 =
+CALCULATE ( [CA], SAMEPERIODLASTYEAR ( dim_date[date_complete] ) )
+
+Évolution CA =
+DIVIDE ( [CA] - [CA N-1], [CA N-1] )
+// -> Format : Pourcentage
+
+Marge brute N-1 =
+CALCULATE ( [Marge brute], SAMEPERIODLASTYEAR ( dim_date[date_complete] ) )

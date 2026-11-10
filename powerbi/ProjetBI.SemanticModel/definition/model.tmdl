@@ -1,0 +1,23 @@
+model Model
+	culture: fr-FR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: fr-FR
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["dim_date","dim_produit","dim_geographie","fact_ventes","Serveur","BaseOLAP"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table dim_date
+ref table dim_produit
+ref table dim_geographie
+ref table fact_ventes
+ref table DateTableTemplate_8894c543-ed39-4667-8213-ad6b1227771e
+ref table LocalDateTable_4f79e6d6-c5af-4dbc-99e3-9e8152e88f6a
+ref table LocalDateTable_58504995-5c42-4d54-8e5f-2b8798ace3e6
+ref table LocalDateTable_dffbcd78-ef8e-4784-9897-df9ed572645d
+

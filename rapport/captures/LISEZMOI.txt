@@ -1,0 +1,22 @@
+Captures d'écran du rapport. Chaque PNG présent ici remplace automatiquement son cadre
+"Capture à insérer" quand on recompile rapport.tex. Les noms doivent être EXACTEMENT ceux-ci.
+
+Prises le 10/11 sur l'infrastructure de l'école (groupe 5), avec les vraies données :
+nifi_global.png        Vue d'ensemble du process group Projet BI (NiFi 1.23.1, juste après un ETL complet)
+nifi_groupe1.png       Intérieur du groupe 1 - Extract classicmodels
+nifi_config_qdtr.png   Fenêtre Configure d'un QueryDatabaseTableRecord (Extract orderdetails)
+nifi_config_pdr.png    Fenêtre Configure d'un PutDatabaseRecord (Upsert stg_cm_orderdetails)
+controles.png          Script 04_controles.sql : totaux sources (pgAdmin, CloudBeaver) = OLAP, journal ETL
+powerbi_page.png       Page de rapport complète (Power BI Desktop 2.159, OLAP 10.1.20.51:27171)
+powerbi_filtre.png     La même page filtrée (Europe + Classic Cars)
+nifi_cdc.png           Bonus CDC : passage incrémental dans le groupe 1 (seul le lot du prof du 09/11 est extrait)
+cdc_ecole.png          Bonus CDC : rejeu du lot du 09/11 (lot, état d'avant, NiFi, journal, OLAP = sources)
+
+Prise sur l'environnement de test (même modèle sémantique, la vue ne dépend pas des données) :
+powerbi_modele.png     Vue Modèle avec les 4 tables et leurs relations
+
+Pour refaire une capture : écraser le fichier du même nom, puis recompiler.
+
+Compilation (2 fois pour la table des matières) :
+    pdflatex rapport.tex
+    pdflatex rapport.tex

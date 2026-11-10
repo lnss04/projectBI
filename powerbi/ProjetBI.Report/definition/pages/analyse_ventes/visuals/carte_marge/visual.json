@@ -1,0 +1,37 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "carte_marge",
+  "position": {
+    "x": 510,
+    "y": 10,
+    "z": 6000,
+    "height": 100,
+    "width": 250,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_ventes"
+                    }
+                  },
+                  "Property": "Marge brute"
+                }
+              },
+              "queryRef": "fact_ventes.Marge brute",
+              "nativeQueryRef": "Marge brute"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

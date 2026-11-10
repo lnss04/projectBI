@@ -1,0 +1,27 @@
+relationship rel_ventes_date
+	fromColumn: fact_ventes.date_sk
+	toColumn: dim_date.date_sk
+
+relationship rel_ventes_produit
+	fromColumn: fact_ventes.produit_sk
+	toColumn: dim_produit.produit_sk
+
+relationship rel_ventes_geo
+	fromColumn: fact_ventes.geo_sk
+	toColumn: dim_geographie.geo_sk
+
+relationship 58a7ef24-5a44-49c8-b506-78f58f0bfa8d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_produit.etl_maj
+	toColumn: LocalDateTable_4f79e6d6-c5af-4dbc-99e3-9e8152e88f6a.Date
+
+relationship a2b44a00-52c3-42f4-bca5-b5eca75bd5e4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_geographie.etl_maj
+	toColumn: LocalDateTable_58504995-5c42-4d54-8e5f-2b8798ace3e6.Date
+
+relationship 17c963ef-1726-49e9-818f-8b5af9c641a7
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_ventes.etl_maj
+	toColumn: LocalDateTable_dffbcd78-ef8e-4784-9897-df9ed572645d.Date
+

@@ -1,0 +1,200 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "matrice_pays",
+  "position": {
+    "x": 640,
+    "y": 420,
+    "z": 12000,
+    "height": 290,
+    "width": 630,
+    "tabOrder": 12000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Columns": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_date"
+                    }
+                  },
+                  "Property": "annee"
+                }
+              },
+              "queryRef": "dim_date.annee",
+              "nativeQueryRef": "annee",
+              "active": true
+            }
+          ]
+        },
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_geographie"
+                    }
+                  },
+                  "Property": "zone"
+                }
+              },
+              "queryRef": "dim_geographie.zone",
+              "nativeQueryRef": "zone",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_geographie"
+                    }
+                  },
+                  "Property": "pays"
+                }
+              },
+              "queryRef": "dim_geographie.pays",
+              "nativeQueryRef": "pays",
+              "active": false
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_ventes"
+                    }
+                  },
+                  "Property": "CA"
+                }
+              },
+              "queryRef": "fact_ventes.CA",
+              "nativeQueryRef": "CA"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_ventes"
+                    }
+                  },
+                  "Property": "Marge brute"
+                }
+              },
+              "queryRef": "fact_ventes.Marge brute",
+              "nativeQueryRef": "Marge brute"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Matrice zone / pays par année'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "870fe34a4b809bbb944e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_geographie"
+              }
+            },
+            "Property": "zone"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "32f761c95d062724d000",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_geographie"
+              }
+            },
+            "Property": "pays"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "4c5a3aef49682036bbae",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_date"
+              }
+            },
+            "Property": "annee"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "78577682ed060b624b6a",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_ventes"
+              }
+            },
+            "Property": "CA"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "c6e03f47e895a929200d",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_ventes"
+              }
+            },
+            "Property": "Marge brute"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

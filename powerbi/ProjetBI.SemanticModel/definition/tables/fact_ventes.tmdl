@@ -1,0 +1,151 @@
+table fact_ventes
+	lineageTag: 131b51b0-69e0-4a00-a6d1-e0800aa98872
+
+	measure CA = CALCULATE ( SUM ( fact_ventes[chiffre_affaires] ), fact_ventes[statut_commande] <> "Cancelled" )
+		formatString: #,0
+		lineageTag: 63d148f5-e0fa-4dac-88be-4f4519d64d13
+
+	measure 'Marge brute' = CALCULATE ( SUM ( fact_ventes[marge_brute] ), fact_ventes[statut_commande] <> "Cancelled" )
+		formatString: #,0
+		lineageTag: 578d968e-8a7e-446d-8dc8-bcc091bec3c3
+
+	measure 'Taux de marge' = DIVIDE ( [Marge brute], [CA] )
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 54a0409a-538e-4fb2-a9ac-a3f02418e714
+
+	measure 'Quantité vendue' = CALCULATE ( SUM ( fact_ventes[quantite] ), fact_ventes[statut_commande] <> "Cancelled" )
+		formatString: #,0
+		lineageTag: 392088ef-5dce-4b3e-8252-e610e639cd20
+
+	measure 'CA N-1' = CALCULATE ( [CA], SAMEPERIODLASTYEAR ( dim_date[date_complete] ) )
+		formatString: #,0
+		lineageTag: 7bd5387b-d8b9-49b7-b15b-5d090d8dea92
+
+	column vente_sk
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: d26025cf-59b5-4205-9946-55e229e5ae5c
+		summarizeBy: sum
+		sourceColumn: vente_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_sk
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 44cc7b31-eb73-4348-8935-933247c76c6c
+		summarizeBy: none
+		sourceColumn: date_sk
+
+	column produit_sk
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: cb0a2efb-3826-4b6d-b678-ad14f84aeb68
+		summarizeBy: none
+		sourceColumn: produit_sk
+
+	column geo_sk
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 689ae747-cb78-4422-bc30-7e2a9fb7b905
+		summarizeBy: none
+		sourceColumn: geo_sk
+
+	column quantite
+		dataType: int64
+		formatString: #,0
+		lineageTag: 06505c0f-b1fe-4097-96a4-61dfd4587233
+		summarizeBy: sum
+		sourceColumn: quantite
+
+	column prix_unitaire
+		dataType: double
+		formatString: #,0.00
+		lineageTag: fa8199cd-6ace-405b-8b2b-24742e0c964e
+		summarizeBy: sum
+		sourceColumn: prix_unitaire
+
+		annotation SummarizationSetBy = Automatic
+
+	column cout_unitaire
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 3002918f-76aa-4e76-9fd8-b6bb3d6b88e6
+		summarizeBy: sum
+		sourceColumn: cout_unitaire
+
+		annotation SummarizationSetBy = Automatic
+
+	column chiffre_affaires
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 1244956b-4719-45e7-8800-4ba52575dda3
+		summarizeBy: sum
+		sourceColumn: chiffre_affaires
+
+	column cout_achat
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 6ea4c89e-70de-4932-8e3f-e9bd1af82245
+		summarizeBy: sum
+		sourceColumn: cout_achat
+
+	column marge_brute
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 3148a62f-51a3-4d46-899f-ae56938751af
+		summarizeBy: sum
+		sourceColumn: marge_brute
+
+	column source
+		dataType: string
+		lineageTag: fd84da6d-a6a6-4c73-8ebb-2b73631fda09
+		summarizeBy: none
+		sourceColumn: source
+
+	column num_commande
+		dataType: int64
+		formatString: 0
+		lineageTag: 5c43eb93-7061-432e-afd8-774a77142254
+		summarizeBy: sum
+		sourceColumn: num_commande
+
+		annotation SummarizationSetBy = Automatic
+
+	column ligne_source
+		dataType: string
+		lineageTag: 58e1e743-3f37-47ac-a4aa-e021d7f6d5a0
+		summarizeBy: none
+		sourceColumn: ligne_source
+
+	column statut_commande
+		dataType: string
+		lineageTag: c424dcdf-aef5-4bea-924e-d3978436ecfd
+		summarizeBy: none
+		sourceColumn: statut_commande
+
+	column etl_maj
+		dataType: dateTime
+		isHidden
+		lineageTag: 97d3e4de-01be-4715-93a8-b859e6de7603
+		summarizeBy: none
+		sourceColumn: etl_maj
+
+		variation Variation
+			isDefault
+			relationship: 17c963ef-1726-49e9-818f-8b5af9c641a7
+			defaultHierarchy: LocalDateTable_dffbcd78-ef8e-4784-9897-df9ed572645d.'Hiérarchie de dates'
+
+	partition fact_ventes = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database(Serveur, BaseOLAP),
+				    Donnees = Source{[Schema="public",Item="fact_ventes"]}[Data]
+				in
+				    Donnees
+

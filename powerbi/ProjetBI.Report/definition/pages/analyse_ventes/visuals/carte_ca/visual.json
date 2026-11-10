@@ -1,0 +1,37 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "carte_ca",
+  "position": {
+    "x": 250,
+    "y": 10,
+    "z": 5000,
+    "height": 100,
+    "width": 250,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_ventes"
+                    }
+                  },
+                  "Property": "CA"
+                }
+              },
+              "queryRef": "fact_ventes.CA",
+              "nativeQueryRef": "CA"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,101 @@
+table dim_produit
+	lineageTag: b468cfa6-5de9-42ed-bbc9-b6bbd6d1fb53
+
+	column produit_sk
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 9c3cb2de-d678-435e-b2c0-3a34780bbe3c
+		summarizeBy: none
+		sourceColumn: produit_sk
+
+	column univers
+		dataType: string
+		lineageTag: 1f662a9b-5d72-45e6-b224-dbb335472226
+		summarizeBy: none
+		sourceColumn: univers
+
+	column categorie
+		dataType: string
+		lineageTag: acf11aee-4497-4154-a11a-37c179074176
+		summarizeBy: none
+		sourceColumn: categorie
+
+	column libelle
+		dataType: string
+		lineageTag: 58803a68-7dff-40b8-9df4-cd8a08eccf91
+		summarizeBy: none
+		sourceColumn: libelle
+
+	column code_produit
+		dataType: string
+		lineageTag: a41d43aa-3389-48b5-b70e-1dc0454fd8eb
+		summarizeBy: none
+		sourceColumn: code_produit
+
+	column source
+		dataType: string
+		lineageTag: 39602d23-d547-4d2e-8b01-4fd1e9a0b31f
+		summarizeBy: none
+		sourceColumn: source
+
+	column fournisseur
+		dataType: string
+		lineageTag: 5993e1d1-8bdd-40ae-aef4-2af860498105
+		summarizeBy: none
+		sourceColumn: fournisseur
+
+	column prix_catalogue
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 7c487a00-c476-431a-a409-bc49d19ad8f2
+		summarizeBy: sum
+		sourceColumn: prix_catalogue
+
+		annotation SummarizationSetBy = Automatic
+
+	column cout_unitaire
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 32717337-cea5-4404-b571-0c33b6ae8290
+		summarizeBy: sum
+		sourceColumn: cout_unitaire
+
+		annotation SummarizationSetBy = Automatic
+
+	column etl_maj
+		dataType: dateTime
+		isHidden
+		lineageTag: 2df36db1-01b1-4f30-b85e-2427b4c90122
+		summarizeBy: none
+		sourceColumn: etl_maj
+
+		variation Variation
+			isDefault
+			relationship: 58a7ef24-5a44-49c8-b506-78f58f0bfa8d
+			defaultHierarchy: LocalDateTable_4f79e6d6-c5af-4dbc-99e3-9e8152e88f6a.'Hiérarchie de dates'
+
+	hierarchy Produits
+		lineageTag: e21cf9c6-03e2-4fa2-88a2-058b09dd2f6e
+
+		level Univers
+			lineageTag: f29c97cf-3583-4f21-983b-70f6e2877174
+			column: univers
+
+		level Catégorie
+			lineageTag: f43a2fa4-cd56-4076-b149-114ab8cdc3bf
+			column: categorie
+
+		level Article
+			lineageTag: d90f2eed-e900-4ec8-a91e-4e3cfbfa6c3d
+			column: libelle
+
+	partition dim_produit = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database(Serveur, BaseOLAP),
+				    Donnees = Source{[Schema="public",Item="dim_produit"]}[Data]
+				in
+				    Donnees
+

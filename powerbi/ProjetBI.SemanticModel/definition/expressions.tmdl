@@ -1,0 +1,10 @@
+expression Serveur = "10.1.20.51:27171" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 557e01f6-b1cb-4167-ae05-2cc25f8cd951
+
+	annotation PBI_ResultType = Text
+
+expression BaseOLAP = "user_ktm" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: b449a40f-e16f-40d8-a617-40057217a957
+
+	annotation PBI_ResultType = Text
+

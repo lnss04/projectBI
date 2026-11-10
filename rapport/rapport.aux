@@ -1,0 +1,45 @@
+\relax 
+\providecommand \babel@aux [2]{\global \let \babel@toc \@gobbletwo }
+\@nameuse{bbl@beforestart}
+\catcode `:\active 
+\catcode `;\active 
+\catcode `!\active 
+\catcode `?\active 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\babel@aux{french}{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Contexte et architecture}{2}{section.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Architecture du projet : 2 sources, 1 ETL (NiFi), 1 staging (MySQL), 1 OLAP (PostgreSQL)}}{2}{figure.caption.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Les 5 étapes d'analyse}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Schéma de la BD OLAP (étoile)}{3}{section.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Schéma en étoile de la BD OLAP : 1 table de faits, 3 dimensions}}{3}{figure.caption.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Schéma de la BD de staging (MySQL)}{3}{section.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Tables de la BD de staging}}{4}{table.caption.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Flux réalisé dans NiFi}{4}{section.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Flux NiFi : 4 process groups planifiés en CRON}}{4}{figure.caption.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Vue d'ensemble du process group Projet BI}}{5}{figure.caption.6}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Intérieur du groupe 1 - Extract classicmodels}}{5}{figure.caption.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Configuration des processeurs}{6}{section.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Controller services}}{6}{table.caption.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Processeurs NiFi}}{6}{table.caption.9}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Fenêtre Configure d'un QueryDatabaseTableRecord (Extract orderdetails)}}{7}{figure.caption.10}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Fenêtre Configure d'un PutDatabaseRecord (Upsert stg\_cm\_orderdetails)}}{7}{figure.caption.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Règles de transformation}{8}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Visualisation Power BI}{8}{section.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Modèle.}{8}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Mesures DAX}{8}{section*.13}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Page \@FB@og  Analyse des ventes \@FB@fg  \relax }}{9}{table.caption.14}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Vue Modèle : l'étoile et ses 3 relations plusieurs-à-un}}{9}{figure.caption.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {9}Bonus : Change Data Capture, contrôles et limites}{9}{section.9}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Page « Analyse des ventes », sans filtre}}{10}{figure.caption.16}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces La même page filtrée sur Europe et Classic Cars}}{10}{figure.caption.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Démonstration sur l'infrastructure de l'école.}{11}{section*.18}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Passage incrémental dans le groupe 1 : seul le lot du 09/11 est extrait}}{11}{figure.caption.19}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Rejeu du lot du 09/11 sur l'infrastructure de l'école : seul le lot circule, OLAP = sources}}{12}{figure.caption.20}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Test du CDC}}{12}{table.caption.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contrôles post-chargement}{12}{section*.22}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Contrôles du script 04 sur les bases de l'école : totaux sources = OLAP, journal, lignes orphelines}}{13}{figure.caption.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limites.}{13}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {A}Fichiers fournis}{13}{appendix.A}\protected@file@percent }
+\gdef \@abspage@last{13}

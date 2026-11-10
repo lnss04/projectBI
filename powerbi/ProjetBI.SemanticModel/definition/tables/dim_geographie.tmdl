@@ -1,0 +1,86 @@
+table dim_geographie
+	lineageTag: a6b7546a-7180-44fa-a80f-1ddc4c0f4cae
+
+	column geo_sk
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: e266ee38-39e3-427a-a26c-d16e2558e9ec
+		summarizeBy: none
+		sourceColumn: geo_sk
+
+	column zone
+		dataType: string
+		lineageTag: f4e775a4-9630-4a38-afdf-1365c422e94d
+		summarizeBy: none
+		sourceColumn: zone
+
+	column pays
+		dataType: string
+		lineageTag: 8a741411-13f2-4387-9b26-34ee3dcd854f
+		dataCategory: Country
+		summarizeBy: none
+		sourceColumn: pays
+
+	column etat_province
+		dataType: string
+		lineageTag: 006f1e30-57a6-4360-90dd-a6d7fa3425fe
+		dataCategory: StateOrProvince
+		summarizeBy: none
+		sourceColumn: etat_province
+
+	column ville
+		dataType: string
+		lineageTag: 1540a6cc-7b98-4fe8-9e50-5b4ee6989180
+		dataCategory: City
+		summarizeBy: none
+		sourceColumn: ville
+
+	column code_pays
+		dataType: string
+		lineageTag: 53efcf49-b3bf-44ae-b192-14f1d95a0eeb
+		summarizeBy: none
+		sourceColumn: code_pays
+
+	column etl_maj
+		dataType: dateTime
+		isHidden
+		lineageTag: bb231165-7b27-43ca-bf3b-36b11aa89810
+		summarizeBy: none
+		sourceColumn: etl_maj
+
+		variation Variation
+			isDefault
+			relationship: a2b44a00-52c3-42f4-bca5-b5eca75bd5e4
+			defaultHierarchy: LocalDateTable_58504995-5c42-4d54-8e5f-2b8798ace3e6.'Hiérarchie de dates'
+
+	hierarchy Géographie
+		lineageTag: 3c7f08ae-44ec-4875-8eaa-df5cf9d12197
+
+		level Zone
+			lineageTag: d05fef54-d815-4a86-9b6c-c907946f4744
+			column: zone
+
+		level Pays
+			lineageTag: 29caa387-8075-42c7-89fc-07849e7baa0c
+			column: pays
+
+		level État
+			lineageTag: 1b65235b-fc6e-4097-aaa7-18b52b632d4d
+			column: etat_province
+
+		level Ville
+			lineageTag: 337d882e-74c2-49a4-b38f-d6fd97dbe5b2
+			column: ville
+
+	partition dim_geographie = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database(Serveur, BaseOLAP),
+				    Donnees = Source{[Schema="public",Item="dim_geographie"]}[Data]
+				in
+				    Donnees
+
+	annotation PBI_ResultType = Exception
+

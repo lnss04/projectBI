@@ -1,0 +1,92 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "colonnes_zone",
+  "position": {
+    "x": 250,
+    "y": 420,
+    "z": 11000,
+    "height": 290,
+    "width": 380,
+    "tabOrder": 11000
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_geographie"
+                    }
+                  },
+                  "Property": "zone"
+                }
+              },
+              "queryRef": "dim_geographie.zone",
+              "nativeQueryRef": "zone",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_ventes"
+                    }
+                  },
+                  "Property": "CA"
+                }
+              },
+              "queryRef": "fact_ventes.CA",
+              "nativeQueryRef": "CA"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_ventes"
+                    }
+                  },
+                  "Property": "Marge brute"
+                }
+              },
+              "queryRef": "fact_ventes.Marge brute",
+              "nativeQueryRef": "Marge brute"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'CA et marge brute par zone'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

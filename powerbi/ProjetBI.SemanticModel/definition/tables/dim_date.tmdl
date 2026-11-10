@@ -1,0 +1,117 @@
+table dim_date
+	lineageTag: a478b267-588b-4488-b018-90749e93fc64
+	dataCategory: Time
+
+	column date_sk
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 47d4cdf1-77a9-4dc7-b87b-f654e724afd4
+		summarizeBy: none
+		sourceColumn: date_sk
+
+	column annee
+		dataType: int64
+		formatString: 0
+		lineageTag: 7265c854-30f8-4906-9a67-1bde80483dca
+		summarizeBy: none
+		sourceColumn: annee
+
+	column trimestre
+		dataType: int64
+		formatString: 0
+		lineageTag: 1fe9b113-d817-4b1d-9de3-9c45bad5f318
+		summarizeBy: none
+		sourceColumn: trimestre
+
+	column mois
+		dataType: int64
+		formatString: 0
+		lineageTag: 2190957f-5fd7-41e5-9ce0-75c5b13cfde0
+		summarizeBy: none
+		sourceColumn: mois
+
+	column jour
+		dataType: int64
+		formatString: 0
+		lineageTag: fd7922c7-6653-4881-9174-581de67a48ea
+		summarizeBy: none
+		sourceColumn: jour
+
+	column date_complete
+		dataType: dateTime
+		isKey
+		formatString: Short Date
+		lineageTag: 40908e4b-f794-4318-b77a-8aa66a36c105
+		summarizeBy: none
+		sourceColumn: date_complete
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column libelle_trimestre
+		dataType: string
+		lineageTag: 4e1576cf-b998-4985-861c-6df81c1c2a9b
+		summarizeBy: none
+		sourceColumn: libelle_trimestre
+
+	column annee_mois
+		dataType: string
+		lineageTag: a2cfb2cc-c344-41ae-b540-2e4e1187b36f
+		summarizeBy: none
+		sourceColumn: annee_mois
+
+	column nom_mois
+		dataType: string
+		lineageTag: 228267e9-7778-4686-aaa8-999c7d1ce933
+		summarizeBy: none
+		sourceColumn: nom_mois
+		sortByColumn: mois
+
+	column jour_semaine
+		dataType: int64
+		formatString: 0
+		lineageTag: 9acdbd23-2e5c-42bc-a342-3fc42f11e0e9
+		summarizeBy: none
+		sourceColumn: jour_semaine
+
+	column nom_jour
+		dataType: string
+		lineageTag: 1ef0894f-43f7-41a2-9b4c-32542afff9f6
+		summarizeBy: none
+		sourceColumn: nom_jour
+		sortByColumn: jour_semaine
+
+	column est_weekend
+		dataType: boolean
+		lineageTag: f254d7bb-d106-49b3-ba48-b0c478342d39
+		summarizeBy: none
+		sourceColumn: est_weekend
+
+	hierarchy Calendrier
+		lineageTag: 4ccf7769-113e-45c6-955f-3e342481cdf8
+
+		level Année
+			lineageTag: 0b670e00-0962-421a-b6d9-834f1bfe1d76
+			column: annee
+
+		level Trimestre
+			lineageTag: e0686faa-b333-41eb-ab9b-e8f4c575da54
+			column: libelle_trimestre
+
+		level Mois
+			lineageTag: 2f556666-1ef9-46e3-9337-84c55eaf8540
+			column: nom_mois
+
+		level Jour
+			lineageTag: f62ba4bb-2040-4716-845e-84ec809f7ef5
+			column: date_complete
+
+	partition dim_date = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database(Serveur, BaseOLAP),
+				    Donnees = Source{[Schema="public",Item="dim_date"]}[Data]
+				in
+				    Donnees
+
